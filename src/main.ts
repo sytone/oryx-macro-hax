@@ -21,7 +21,7 @@ export default async function main(
     const loaded = readFileSync(keymapSource).toString();
     const newConfig = expandMacros(loaded, macroMap);
 
-    const backup = keymapSource + Math.random() + ".old.c";
+    const backup = `${keymapSource}${Math.random()}.old.c`;
     writeFileSync(backup, loaded);
     console.log("Backed up keymap.c to " + backup);
 

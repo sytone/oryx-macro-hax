@@ -1,4 +1,4 @@
-name: "Automated Release: Run ORYX download, macro enhancement post-processor & QMK compiler"
+name: 'Automated Release: Run ORYX download, macro enhancement post-processor & QMK compiler'
 
 on:
   push:
@@ -14,6 +14,11 @@ jobs:
       USER_NAME: ${{ github.event.repository.owner.name }}
     steps:
       - uses: actions/checkout@v3
+      - name: Dump github context
+        run: echo "$GITHUB_CONTEXT"
+        shell: bash
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -31,11 +36,10 @@ jobs:
           artifacts_path: ${{ github.workspace }}/artifacts
           keymap: firmware
           keyboard: moonlander
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: 'marvinpinto/action-automatic-releases@latest'
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          title: "Updated firmware"
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          automatic_release_tag: 'latest'
+          title: 'Updated firmware'
           files: |
             artifacts/moonlander_firmware.bin
-        
