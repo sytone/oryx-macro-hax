@@ -8,6 +8,11 @@ jobs:
   process_macros:
     runs-on: ubuntu-latest
     name: Macro Enhancement
+    permissions:
+      id-token: 'write'
+      contents: 'write'
+      packages: 'write'
+      pull-requests: 'read'
     env:
       LAYOUT_ID: ${{ vars.LAYOUT_ID }}
       LAYOUT_FOLDER: ${{ vars.LAYOUT_FOLDER }}
